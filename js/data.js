@@ -141,7 +141,7 @@ const sellers = [
     address: "Blok A No. 3, Pasar Ikan Segar WGP, Waingapu",
     category: "laut",
     rating: 4.9,
-    img: "asset/lapakjiren.png",
+    img: "asset/lapakJiren.png",
     productIds: [3, 6, 8, 11],
     phone: "6281xxxxxxxxx",
   },
