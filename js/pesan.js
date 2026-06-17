@@ -170,49 +170,6 @@
     // MODE MANUAL (Pesan 1 item langsung)
     // =============================================
 
-    function updateSellerSelection() {
-      const fishSelect = document.getElementById('order-fish');
-      const container = document.getElementById('seller-selection-container');
-      if (!container || checkoutMode) return;
-
-      const fishId = parseInt(fishSelect.value);
-      if (!fishId) { container.innerHTML = ''; return; }
-
-      const productSellers = sellers.filter(seller => seller.productIds && seller.productIds.includes(fishId));
-      if (productSellers.length === 0) {
-        container.innerHTML = `<div style="background:#fef5e7; border:1px solid #fdebd0; padding:12px 16px; border-radius:12px; display:flex; align-items:center; gap:8px;"><iconify-icon icon="solar:info-circle-bold" style="color:#D68910; font-size:18px;"></iconify-icon><span style="font-size:13px; color:#92400e;">Belum ada lapak terdaftar untuk produk ini.</span></div>`;
-        return;
-      }
-
-      container.innerHTML = `
-        <label class="form-label" style="margin-bottom:12px;">Pilih Lapak Penjual <span class="required">*</span></label>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          ${productSellers.map(s => `
-            <label style="cursor:pointer; display:flex; align-items:center; gap:14px; padding:14px 16px; background:white; border:2px solid #e5e7eb; border-radius:16px; transition:all 0.2s;" onmouseover="this.style.borderColor='#0077B6'" onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='#e5e7eb'">
-              <input type="radio" name="selected-seller" value="${s.id}" required style="accent-color:#0077B6; width:18px; height:18px; flex-shrink:0;">
-              <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
-                <div style="width:40px; height:40px; border-radius:12px; background:#e6f3fa; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                  <iconify-icon icon="solar:shop-2-bold" style="color:#0077B6; font-size:20px;"></iconify-icon>
-                </div>
-                <div style="flex:1; min-width:0;">
-                  <span style="display:block; font-size:14px; font-weight:700; color:#111827;">${s.name}</span>
-                  <span style="display:block; font-size:11px; color:#6b7280; margin-top:2px;">⭐ ${s.rating}</span>
-                </div>
-                <iconify-icon icon="mdi:whatsapp" style="color:#25D366; font-size:24px; flex-shrink:0;"></iconify-icon>
-              </div>
-            </label>
-          `).join('')}
-        </div>
-      `;
-
-      container.querySelectorAll('input[name="selected-seller"]').forEach(input => {
-        input.addEventListener('change', () => {
-          container.querySelectorAll('label').forEach(label => { label.style.borderColor = '#e5e7eb'; label.style.background = 'white'; });
-          if (input.checked) { input.closest('label').style.borderColor = '#0077B6'; input.closest('label').style.background = '#f0f9ff'; }
-        });
-      });
-    }
-
     function updateOrderSummary() {
       if (checkoutMode) return;
 
