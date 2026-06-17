@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami — Pasar Ikan Waingapu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* ===== LOGO CIRCULAR STYLES ===== */
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+      }
+      .logo-circle {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        box-shadow: 0 2px 12px rgba(0, 119, 182, 0.15);
+        border: 2px solid #e6f3fa;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .logo-circle:hover {
+        transform: scale(1.08);
+        box-shadow: 0 4px 20px rgba(0, 119, 182, 0.25);
+      }
+      .logo-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .logo-text-block {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .logo-text-main {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 800;
+        font-size: 17px;
+        color: #111827;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+      }
+      .logo-text-sub {
+        font-size: 11px;
+        font-weight: 500;
+        color: #6b7280;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* Mobile responsive */
+      @media (max-width: 768px) {
+        .logo-circle {
+          width: 44px;
+          height: 44px;
+        }
+        .logo-text-main {
+          font-size: 14px;
+        }
+        .logo-text-sub {
+          font-size: 9px;
+        }
+      }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-circle">
+                    <img src="asset/logo.png" alt="Logo">
+                </div>
+                <div class="logo-text-block">
+                    <span class="logo-text-main">Pasar Ikan Waingapu</span>
+                    <span class="logo-text-sub">Pasar Ikan Segar</span>
+                </div>
+            </a>
+            <div class="nav-links"><a href="index.html" class="nav-link">Beranda</a><a href="produk.html" class="nav-link">Info Ikan</a><a href="lapak.html" class="nav-link">Lapak Penjual</a><a href="pesan.html" class="nav-link">Pesan Ikan</a><a href="lokasi.html" class="nav-link">Lokasi Pasar</a><a href="tentang.html" class="nav-link active">Tentang Kami</a></div>
+            <div class="nav-right"><a href="keranjang.html" class="cart-btn"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon><span id="cart-badge" class="cart-badge">0</span></a><button class="btn-login"><iconify-icon icon="solar:user-circle-linear" style="font-size:18px;"></iconify-icon> Masuk</button><button class="mobile-menu-btn" onclick="toggleMobileMenu()"><iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon></button></div>
+        </div>
+        <div id="mobile-menu" class="mobile-menu"><a href="index.html"><iconify-icon icon="solar:home-2-linear"></iconify-icon> Beranda</a><a href="produk.html"><iconify-icon icon="solar:fish-linear"></iconify-icon> Info Ikan</a><a href="lapak.html"><iconify-icon icon="solar:shop-2-linear"></iconify-icon> Lapak Penjual</a><a href="pesan.html"><iconify-icon icon="solar:clipboard-list-linear"></iconify-icon> Pesan Ikan</a><a href="lokasi.html"><iconify-icon icon="solar:map-point-linear"></iconify-icon> Lokasi Pasar</a><a href="tentang.html" class="active"><iconify-icon icon="solar:info-circle-linear"></iconify-icon> Tentang Kami</a><a href="keranjang.html"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon> Keranjang</a></div>
+    </nav>
+
+    <!-- TOAST (Wajib ada untuk notifikasi komentar) -->
+    <div id="toast" class="toast">
+        <div class="toast-icon success"><iconify-icon icon="solar:check-circle-bold"></iconify-icon></div>
+        <div><div id="toast-title" class="toast-title">Berhasil!</div><div id="toast-msg" class="toast-msg">Item ditambahkan</div></div>
+        <button class="toast-close" onclick="hideToast()"><iconify-icon icon="solar:close-circle-linear"></iconify-icon></button>
+    </div>
+
+    <!-- HERO TENTANG -->
+    <div style="background:linear-gradient(135deg,#0077B6,#00476D,#0F766E); padding:80px 0 64px; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0; opacity:0.1;">
+            <div style="position:absolute; top:0; right:0; width:384px; height:384px; border:1px solid white; border-radius:50%; transform:translate(50%,-50%);"></div>
+        </div>
+        <div class="container" style="position:relative; z-index:1; text-align:center;">
+            <h1 style="font-size:2.5rem; font-weight:800; color:white; margin-bottom:16px;">Tentang Pasar Ikan Waingapu</h1>
+            <p style="color:rgba(255,255,255,0.7); font-size:18px; max-width:560px; margin:0 auto;">Menghubungkan nelayan lokal dengan konsumen yang menghargai kesegaran</p>
+        </div>
+    </div>
+
+    <!-- CERITA KAMI -->
+    <div class="container" style="padding:64px 1rem;">
+        <div style="display:grid; grid-template-columns:1fr; gap:48px; align-items:center; margin-bottom:80px;">
+            <div>
+                <div class="section-badge" style="background:#e6f3fa; color:#0077B6;"><iconify-icon icon="solar:history-bold" style="font-size:18px;"></iconify-icon> Cerita Kami</div>
+                <h2 style="font-size:2rem; font-weight:800; color:#111827; margin-bottom:24px;">Membawa Lapak Basah ke Ranah Digital Waingapu</h2>
+                <p style="color:#6b7280; line-height:1.8; margin-bottom:16px;">Pasar Ikan Waingapu dirancang berdasarkan hasil wawancara dan diskusi langsung dengan para penjual ikan serta nelayan di pesisir Waingapu. Kami melihat bahwa selama ini pemasaran hasil laut mereka masih sangat bergantung pada metode konvensional di pasar fisik, di mana jangkauan pembeli menjadi terbatas dan sering kali stok ikan segar tidak habis terjual dalam sehari.</p>
+                <p style="color:#6b7280; line-height:1.8;">Berangkat dari kondisi tersebut, platform ini hadir sebagai solusi wadah market online pertama khusus perikanan di Waingapu. Kami ingin membantu para pedagang dan nelayan lokal bermigrasi ke ekosistem digital, memberikan mereka lapak online yang bisa diakses oleh seluruh masyarakat Kota Waingapu kapan saja, sekaligus mempermudah konsumen dalam melacak keberadaan lokasi lapak mereka.</p>
+            </div>
+            <div style="border-radius:24px; overflow:hidden; box-shadow:0 16px 48px rgba(0,0,0,0.08);"><img src="asset/Nelayan.png" alt="Nelayan" style="width:100%; height:350px; object-fit:cover;"></div>
+        </div>
+
+        <!-- VISI MISI -->
+        <div style="display:grid; grid-template-columns:1fr; gap:32px; margin-bottom:80px;">
+            <div class="card" style="padding:40px; background:linear-gradient(135deg,#e6f3fa,white); border:1px solid #cce7f5;">
+                <div style="width:56px; height:56px; background:#0077B6; border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;"><iconify-icon icon="solar:eye-bold" style="font-size:24px; color:white;"></iconify-icon></div>
+                <h3 style="font-size:24px; font-weight:700; color:#111827; margin-bottom:16px;">Visi</h3>
+                <p style="color:#6b7280; line-height:1.8;">Menjadi platform marketplace perikanan online nomor satu di Waingapu yang menjembatani digitalisasi lapak pedagang dan nelayan lokal menuju pasar yang lebih luas dan modern.</p>
+            </div>
+            <div class="card" style="padding:40px; background:linear-gradient(135deg,#d5f5e3,white); border:1px solid #abebc6;">
+                <div style="width:56px; height:56px; background:#2ECC71; border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;"><iconify-icon icon="solar:target-bold" style="font-size:24px; color:white;"></iconify-icon></div>
+                <h3 style="font-size:24px; font-weight:700; color:#111827; margin-bottom:16px;">Misi</h3>
+                <ul style="list-style:none; color:#6b7280; line-height:2.2; padding-left:0;">
+                    <li style="display:flex; align-items:flex-start; gap:12px;"><iconify-icon icon="solar:check-circle-bold" style="color:#2ECC71; font-size:18px; flex-shrink:0; margin-top:6px;"></iconify-icon><span>Membangun Ekosistem Digital Lapak: Menyediakan wadah pasar online yang praktis dan mudah digunakan oleh para pedagang dan nelayan Waingapu untuk memamerkan produk tangkapan mereka.</span></li>
+                    <li style="display:flex; align-items:flex-start; gap:12px;"><iconify-icon icon="solar:check-circle-bold" style="color:#2ECC71; font-size:18px; flex-shrink:0; margin-top:6px;"></iconify-icon><span>Memperluas Akses Pemasaran: Membantu memperluas jangkauan pemasaran penjual lokal agar bisa menjangkau konsumen yang lebih luas di seluruh area Waingapu tanpa sekat jarak.</span></li>
+                    <li style="display:flex; align-items:flex-start; gap:12px;"><iconify-icon icon="solar:check-circle-bold" style="color:#2ECC71; font-size:18px; flex-shrink:0; margin-top:6px;"></iconify-icon><span>Kemudahan Pelacakan Lokasi: Mengintegrasikan sistem informasi geografis agar konsumen dapat dengan mudah menemukan posisi lapak fisik pedagang secara akurat langsung melalui platform.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TIM KAMI -->
+        <div style="text-align:center; margin-bottom:48px;">
+            <div class="section-badge" style="background:#fef5e7; color:#D68910;"><iconify-icon icon="solar:users-group-rounded-bold" style="font-size:18px;"></iconify-icon> Tim Kami</div>
+            <h2 style="font-size:2rem; font-weight:800; color:#111827;">Orang-Orang di Balik Pasar Ikan Waingapu</h2>
+        </div>
+        <div class="grid grid-4">
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-xl hover:shadow-ocean-500/5 transition-all group">
+                <img src="asset/yupiter.jpeg" class="w-24 h-24 rounded-2xl object-cover mx-auto mb-4 group-hover:scale-105 transition-transform">
+                <h4 class="font-bold text-gray-900">Yupiter Yiwa Hingiranja</h4>
+                <p class="text-sm text-ocean-600 font-medium">Ketua</p>
+                <p class="text-xs text-gray-400 mt-2">Nim : 2624056</p>
+            </div>
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-xl hover:shadow-ocean-500/5 transition-all group">
+                <img src="asset/Shipry.jpeg" class="w-24 h-24 rounded-2xl object-cover mx-auto mb-4 group-hover:scale-105 transition-transform">
+                <h4 class="font-bold text-gray-900">Siprianus Pura Tanya</h4>
+                <p class="text-sm text-ocean-600 font-medium">Anggota</p>
+                <p class="text-xs text-gray-400 mt-2">Nim : 2624045</p>
+            </div>
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-xl hover:shadow-ocean-500/5 transition-all group">
+                <img src="asset/chester.jpeg" class="w-24 h-24 rounded-2xl object-cover mx-auto mb-4 group-hover:scale-105 transition-transform">
+                <h4 class="font-bold text-gray-900">Manchester Ama Kambaru</h4>
+                <p class="text-sm text-ocean-600 font-medium">Anggota</p>
+                <p class="text-xs text-gray-400 mt-2">Nim : 2624068</p>
+            </div>
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-xl hover:shadow-ocean-500/5 transition-all group">
+                <img src="asset/Aldina.jpeg" class="w-24 h-24 rounded-2xl object-cover mx-auto mb-4 group-hover:scale-105 transition-transform">
+                <h4 class="font-bold text-gray-900">Aldina Rauna Bela</h4>
+                <p class="text-sm text-ocean-600 font-medium">Anggota</p>
+                <p class="text-xs text-gray-400 mt-2">Nim : 2624074</p>
+            </div>
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-xl hover:shadow-ocean-500/5 transition-all group">
+                <img src="asset/Elhy.jpeg" class="w-24 h-24 rounded-2xl object-cover mx-auto mb-4 group-hover:scale-105 transition-transform">
+                <h4 class="font-bold text-gray-900">Elyasib Ngabi Ranjawali</h4>
+                <p class="text-sm text-ocean-600 font-medium">Anggota</p>
+                <p class="text-xs text-gray-400 mt-2">Nim : 2624053</p>
+            </div>
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-xl hover:shadow-ocean-500/5 transition-all group">
+                <img src="asset/felix.jpeg" class="w-24 h-24 rounded-2xl object-cover mx-auto mb-4 group-hover:scale-105 transition-transform">
+                <h4 class="font-bold text-gray-900">Felix Yorgan Namu Wali</h4>
+                <p class="text-sm text-ocean-600 font-medium">Anggota</p>
+                <p class="text-xs text-gray-400 mt-2">Nim : 2624052</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== FITUR KOMENTAR BARU ==================== -->
+    <div style="background:#f8fafc; padding:64px 0;">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:48px;">
+                <div class="section-badge" style="background:#fef5e7; color:#D68910;">
+                    <iconify-icon icon="solar:chat-round-dots-bold" style="font-size:18px;"></iconify-icon> Komentar & Dukungan
+                </div>
+                <h2 style="font-size:2rem; font-weight:800; color:#111827;">Apa Kata Pengunjung?</h2>
+                <p style="color:#6b7280; max-width:480px; margin:8px auto 0;">Dukung dan berikan masukan untuk informasi pasar ikan kami</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr; gap:32px; max-width:800px; margin:0 auto;">
+                
+                <!-- Form Komentar -->
+                <div class="card" style="padding:24px;">
+                    <h3 style="font-weight:700; font-size:18px; color:#111827; margin-bottom:20px; display:flex; align-items:center; gap:8px;">
+                        <iconify-icon icon="solar:pen-new-square-linear" style="color:#0077B6; font-size:20px;"></iconify-icon> Tulis Komentar
+                    </h3>
+                    <form id="comment-form">
+                        <div class="form-group">
+                            <label class="form-label">Nama <span class="required">*</span></label>
+                            <input type="text" id="comment-name" class="form-input" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Komentar <span class="required">*</span></label>
+                            <textarea id="comment-text" class="form-textarea" rows="4" placeholder="Tulis komentar, dukungan, atau masukan Anda di sini..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-accent" style="width:100%;">
+                            <iconify-icon icon="solar:chat-round-dots-linear" style="font-size:18px;"></iconify-icon> Kirim Komentar
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Daftar Komentar -->
+                <div>
+                    <h3 style="font-weight:700; font-size:16px; color:#111827; margin-bottom:16px; display:flex; align-items:center; gap:8px;">
+                        <iconify-icon icon="solar:chat-square-like-linear" style="color:#2ECC71; font-size:20px;"></iconify-icon> Komentar Masuk
+                    </h3>
+                    <div id="comments-list" style="display:flex; flex-direction:column; gap:16px;">
+                        <!-- Komentar akan dirender oleh JavaScript di sini -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top:none; padding-top:0;">
+                <p class="footer-copy">&copy; 2026 Sistem Informasi Kelompok2. Semua hak dilindungi.</p>
+                <div style="display:flex; gap:24px;"><a href="index.html" class="footer-link">Beranda</a><a href="produk.html" class="footer-link">Produk</a><a href="keranjang.html" class="footer-link">Keranjang</a></div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/komentar.js"></script>
+    
+    <script>
+     

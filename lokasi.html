@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lokasi Pasar — Pasar Ikan Waingapu</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/maps.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/logo.css">
+  
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-circle">
+          <img src="asset/logo.png" alt="Logo">
+        </div>
+        <div class="logo-text-block">
+          <span class="logo-text-main">Pasar Ikan Waingapu</span>
+          <span class="logo-text-sub">Pasar Ikan Segar</span>
+        </div>
+      </a>
+      <div class="nav-links"><a href="index.html" class="nav-link">Beranda</a><a href="produk.html"
+          class="nav-link">Info Ikan</a><a href="lapak.html" class="nav-link">Lapak Penjual</a><a href="pesan.html" class="nav-link">Pesan Ikan</a><a href="lokasi.html"
+          class="nav-link active">Lokasi Pasar</a><a href="tentang.html" class="nav-link">Tentang Kami</a></div>
+      <div class="nav-right"><a href="keranjang.html" class="cart-btn"><iconify-icon
+            icon="solar:cart-large-2-linear"></iconify-icon><span id="cart-badge" class="cart-badge">0</span></a><button
+          class="btn-login"><iconify-icon icon="solar:user-circle-linear" style="font-size:18px;"></iconify-icon>
+          Masuk</button><button class="mobile-menu-btn" onclick="toggleMobileMenu()"><iconify-icon
+            icon="solar:hamburger-menu-linear"></iconify-icon></button></div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu"><a href="index.html"><iconify-icon
+          icon="solar:home-2-linear"></iconify-icon> Beranda</a><a href="produk.html"><iconify-icon
+          icon="solar:fish-linear"></iconify-icon> Info Ikan</a><a href="lapak.html"><iconify-icon icon="solar:shop-2-linear"></iconify-icon> Lapak Penjual</a><a href="pesan.html"><iconify-icon
+          icon="solar:clipboard-list-linear"></iconify-icon> Pesan Ikan</a><a href="lokasi.html"
+        class="active"><iconify-icon icon="solar:map-point-linear"></iconify-icon> Lokasi Pasar</a><a
+        href="tentang.html"><iconify-icon icon="solar:info-circle-linear"></iconify-icon> Tentang Kami</a><a
+        href="keranjang.html"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon> Keranjang</a></div>
+  </nav>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast">
+    <div class="toast-icon success"><iconify-icon icon="solar:check-circle-bold"></iconify-icon></div>
+    <div>
+      <div id="toast-title" class="toast-title">Berhasil!</div>
+      <div id="toast-msg" class="toast-msg">Item ditambahkan</div>
+    </div><button class="toast-close" onclick="hideToast()"><iconify-icon
+        icon="solar:close-circle-linear"></iconify-icon></button>
+  </div>
+
+  <!-- KONTEN UTAMA -->
+  <div class="page-pt" style="min-height:100vh;">
+    <div class="container" style="padding-top:32px; padding-bottom:64px;">
+      <div style="margin-bottom:32px;">
+        <h1 style="font-size:2rem; font-weight:800; color:#111827; margin-bottom:8px;">Lokasi Pasar Ikan</h1>
+        <p style="color:#6b7280;">Temukan pasar ikan terdekat di Waingapu dan kunjungi langsung</p>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr; gap:32px;">
+        
+        <!-- GOOGLE MAPS IFRAME -->
+        <div id="map-container" style="height:450px; position:relative; overflow:hidden; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+          <iframe 
+            id="google-maps-frame"
+            src="https://maps.google.com/maps?q=Pasar+Ikan+Segar+WGP&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <!-- KARTU LOKASI -->
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          
+          <!-- LOKASI 1 -->
+          <div class="location-card card" id="card-0" style="padding:24px; cursor:pointer; border:2px solid #0077B6;"
+            onclick="selectLocation(0)">
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div
+                style="width:56px; height:56px; background:#e6f3fa; border-radius:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <iconify-icon icon="solar:shop-2-bold" style="font-size:24px; color:#0077B6;"></iconify-icon></div>
+              <div style="flex:1; min-width:0;">
+                <h3 class="location-name" style="font-weight:700; color:#111827; margin-bottom:4px;">Pasar Ikan Segar WGP</h3>
+                <p style="font-size:14px; color:#6b7280; margin-bottom:8px;">Waingapu, Sumba Timur, Nusa Tenggara Timur</p>
+                <div style="display:flex; flex-wrap:wrap; gap:8px;"><span
+                    style="display:inline-flex; align-items:center; gap:4px; font-size:12px; background:#d5f5e3; color:#1e8449; padding:4px 8px; border-radius:8px; font-weight:600;"><iconify-icon
+                      icon="solar:clock-circle-linear" style="font-size:14px;"></iconify-icon> 04:00 - 15:00</span><span
+                    style="display:inline-flex; align-items:center; gap:4px; font-size:12px; background:#e6f3fa; color:#005F92; padding:4px 8px; border-radius:8px; font-weight:600;"><iconify-icon
+                      icon="solar:phone-linear" style="font-size:14px;"></iconify-icon> Hubungi Langsung</span></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- LOKASI 2 -->
+          <div class="location-card card" id="card-1" style="padding:24px; cursor:pointer; border:2px solid transparent;" onclick="selectLocation(1)">
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div
+                style="width:56px; height:56px; background:#d5f5e3; border-radius:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <iconify-icon icon="solar:shop-2-bold" style="font-size:24px; color:#2ECC71;"></iconify-icon></div>
+              <div style="flex:1; min-width:0;">
+                <h3 class="location-name" style="font-weight:700; color:#111827; margin-bottom:4px;">Pasar Ikan jembatan kawangu</h3>
+                <p style="font-size:14px; color:#6b7280; margin-bottom:8px;">Waingapu, Sumba Timur, Nusa Tenggara Timur</p>
+                <div style="display:flex; flex-wrap:wrap; gap:8px;"><span
+                    style="display:inline-flex; align-items:center; gap:4px; font-size:12px; background:#d5f5e3; color:#1e8449; padding:4px 8px; border-radius:8px; font-weight:600;"><iconify-icon
+                      icon="solar:clock-circle-linear" style="font-size:14px;"></iconify-icon> 05:00 - 17:00</span><span
+                    style="display:inline-flex; align-items:center; gap:4px; font-size:12px; background:#e6f3fa; color:#005F92; padding:4px 8px; border-radius:8px; font-weight:600;"><iconify-icon
+                      icon="solar:phone-linear" style="font-size:14px;"></iconify-icon> Hubungi Langsung</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding-top:0;">
+        <p class="footer-copy">&copy; 2026 Sistem Informasi Kelompok2. Semua hak dilindungi.</p>
+        <div style="display:flex; gap:24px;"><a href="index.html" class="footer-link">Beranda</a><a href="produk.html"
+            class="footer-link">Produk</a><a href="keranjang.html" class="footer-link">Keranjang</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/lokasi.js"></script>
+</body>
+
+</html>

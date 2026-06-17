@@ -1,0 +1,26 @@
+/* CSS DASAR (Reset, Typography, Animations) */
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; background-color: #F8FAFC; color: #1f2937; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #F8FAFC; }
+::-webkit-scrollbar-thumb { background: #0077B6; border-radius: 4px; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+@media (min-width: 640px) { .container { padding: 0 1.5rem; } }
+@media (min-width: 1024px) { .container { padding: 0 2rem; } }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+.animate-scaleIn { animation: scaleIn 0.5s ease-out forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+
+.page-pt { padding-top: 72px; }
+@media (min-width: 1024px) { .page-pt { padding-top: 80px; } }
+
+.hero-pattern { background-image: radial-gradient(circle at 20% 50%, rgba(0,119,182,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(46,204,113,0.05) 0%, transparent 50%); }

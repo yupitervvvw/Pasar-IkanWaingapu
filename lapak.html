@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lapak Penjual — Pasar Ikan Waingapu</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/maps.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/logo.css">
+
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-circle">
+          <img src="asset/logo.png" alt="Logo">
+        </div>
+        <div class="logo-text-block">
+          <span class="logo-text-main">Pasar Ikan Waingapu</span>
+          <span class="logo-text-sub">Pasar Ikan Segar</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Beranda</a>
+        <a href="produk.html" class="nav-link">Info Ikan</a>
+        <a href="lapak.html" class="nav-link active">Lapak Penjual</a>
+        <a href="pesan.html" class="nav-link">Pesan Ikan</a>
+        <a href="lokasi.html" class="nav-link">Lokasi Pasar</a>
+        <a href="tentang.html" class="nav-link">Tentang Kami</a>
+      </div>
+      <div class="nav-right">
+        <a href="keranjang.html" class="cart-btn"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon><span
+            id="cart-badge" class="cart-badge">0</span></a>
+        <button class="btn-login"><iconify-icon icon="solar:user-circle-linear" style="font-size:18px;"></iconify-icon>
+          Masuk</button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><iconify-icon
+            icon="solar:hamburger-menu-linear"></iconify-icon></button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu">
+      <a href="index.html"><iconify-icon icon="solar:home-2-linear"></iconify-icon> Beranda</a>
+      <a href="produk.html"><iconify-icon icon="solar:fish-linear"></iconify-icon> Info Ikan</a>
+      <a href="lapak.html" class="active"><iconify-icon icon="solar:shop-2-linear"></iconify-icon> Lapak Penjual</a>
+      <a href="pesan.html"><iconify-icon icon="solar:clipboard-list-linear"></iconify-icon> Pesan Ikan</a>
+      <a href="lokasi.html"><iconify-icon icon="solar:map-point-linear"></iconify-icon> Lokasi Pasar</a>
+      <a href="tentang.html"><iconify-icon icon="solar:info-circle-linear"></iconify-icon> Tentang Kami</a>
+      <a href="keranjang.html"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon> Keranjang</a>
+    </div>
+  </nav>
+
+  <div id="toast" class="toast">
+    <div class="toast-icon success"><iconify-icon icon="solar:check-circle-bold"></iconify-icon></div>
+    <div>
+      <div id="toast-title" class="toast-title">Berhasil!</div>
+      <div id="toast-msg" class="toast-msg">Item ditambahkan</div>
+    </div>
+    <button class="toast-close" onclick="hideToast()"><iconify-icon
+        icon="solar:close-circle-linear"></iconify-icon></button>
+  </div>
+
+  <div class="page-pt" style="min-height:100vh;">
+    <div class="container" style="padding-top:32px; padding-bottom:64px;">
+
+      <div style="margin-bottom:32px;">
+        <h1 style="font-size:2rem; font-weight:800; color:#111827; margin-bottom:8px;">Lapak Penjual</h1>
+        <p style="color:#6b7280;">Temukan lapak penjual ikan terpercaya di Pasar Ikan Waingapu</p>
+      </div>
+
+      <!-- GOOGLE MAPS UNTUK LOKASI PASAR (1 Lokasi untuk Semua Lapak) -->
+      <div id="map-section"
+        style="height:350px; margin-bottom:32px; position:relative; border-radius:24px; overflow:hidden; border:2px solid #e5e7eb; box-shadow:0 4px 16px rgba(0,0,0,0.05);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125870.7360741449!2d120.1111450433594!3d-9.641635299999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2c4c9bae647ee2c5%3A0x5b07015af74c0c27!2sPasar%20Ikan%20Segar%20WGP!5e0!3m2!1sen!2sid!4v1781656617142!5m2!1sen!2sid"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <!-- Badge Informasi di atas Peta -->
+        <div
+          style="position:absolute; top:16px; left:16px; background:rgba(255,255,255,0.95); backdrop-filter:blur(8px); padding:10px 16px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); display:flex; align-items:center; gap:8px; z-index:10;">
+          <iconify-icon icon="solar:map-point-bold" style="color:#0077B6; font-size:20px;"></iconify-icon>
+          <span style="font-size:13px; font-weight:600; color:#111827;">Semua lapak berada di area ini</span>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:16px; margin-bottom:32px;">
+        <div style="position:relative; flex:1; min-width:240px;">
+          <iconify-icon icon="solar:magnifer-linear"
+            style="position:absolute; left:16px; top:50%; transform:translateY(-50%); color:#9ca3af; font-size:20px;"></iconify-icon>
+          <input id="seller-search" type="text" placeholder="Cari nama lapak..." class="form-input"
+            style="padding-left:44px;">
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="cat-btn seller-cat-btn active" data-cat="all" onclick="setSellerCategory('all')">Semua</button>
+          <button class="cat-btn seller-cat-btn" data-cat="laut" onclick="setSellerCategory('laut')">Ikan Laut</button>
+          <button class="cat-btn seller-cat-btn" data-cat="tawar" onclick="setSellerCategory('tawar')">Ikan
+            Tawar</button>
+          <button class="cat-btn seller-cat-btn" data-cat="udang" onclick="setSellerCategory('udang')">Udang &
+            Kerang</button>
+        </div>
+      </div>
+
+      <!-- GRID LAPAK -->
+      <div id="seller-grid" class="grid grid-3"></div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding-top:0;">
+        <p class="footer-copy">&copy; 2025 Sistem Informasi Kelompok2. Semua hak dilindungi.</p>
+        <div style="display:flex; gap:24px;">
+          <a href="index.html" class="footer-link">Beranda</a>
+          <a href="produk.html" class="footer-link">Produk</a>
+          <a href="keranjang.html" class="footer-link">Keranjang</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/lapak.js"></script>
+</body>
+
+</html>

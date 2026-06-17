@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesan Ikan — Pasar Ikan Waingapu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/maps.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/logo.css">
+  
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-circle">
+          <img src="asset/logo.png" alt="Logo">
+        </div>
+        <div class="logo-text-block">
+          <span class="logo-text-main">Pasar Ikan Waingapu</span>
+          <span class="logo-text-sub">Pasar Ikan Segar</span>
+        </div>
+      </a>
+      <div class="nav-links"><a href="index.html" class="nav-link">Beranda</a><a href="produk.html" class="nav-link">Info Ikan</a><a href="lapak.html" class="nav-link">Lapak Penjual</a><a href="pesan.html" class="nav-link active">Pesan Ikan</a><a href="lokasi.html" class="nav-link">Lokasi Pasar</a><a href="tentang.html" class="nav-link">Tentang Kami</a></div>
+      <div class="nav-right"><a href="keranjang.html" class="cart-btn"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon><span id="cart-badge" class="cart-badge">0</span></a><button class="btn-login"><iconify-icon icon="solar:user-circle-linear" style="font-size:18px;"></iconify-icon> Masuk</button><button class="mobile-menu-btn" onclick="toggleMobileMenu()"><iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon></button></div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu"><a href="index.html"><iconify-icon icon="solar:home-2-linear"></iconify-icon> Beranda</a><a href="produk.html"><iconify-icon icon="solar:fish-linear"></iconify-icon> Info Ikan</a><a href="lapak.html"><iconify-icon icon="solar:shop-2-linear"></iconify-icon> Lapak Penjual</a><a href="pesan.html" class="active"><iconify-icon icon="solar:clipboard-list-linear"></iconify-icon> Pesan Ikan</a><a href="lokasi.html"><iconify-icon icon="solar:map-point-linear"></iconify-icon> Lokasi Pasar</a><a href="tentang.html"><iconify-icon icon="solar:info-circle-linear"></iconify-icon> Tentang Kami</a><a href="keranjang.html"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon> Keranjang</a></div>
+  </nav>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast">
+    <div class="toast-icon success"><iconify-icon icon="solar:check-circle-bold"></iconify-icon></div>
+    <div>
+      <div id="toast-title" class="toast-title">Berhasil!</div>
+      <div id="toast-msg" class="toast-msg">Item ditambahkan</div>
+    </div><button class="toast-close" onclick="hideToast()"><iconify-icon icon="solar:close-circle-linear"></iconify-icon></button>
+  </div>
+
+  <!-- KONTEN UTAMA -->
+  <div class="page-pt" style="min-height:100vh;">
+    <div style="max-width:1024px; margin:0 auto; padding:32px 1rem 64px;">
+      <div style="margin-bottom:32px;">
+        <h1 style="font-size:2rem; font-weight:800; color:#111827; margin-bottom:8px;">Pesan Ikan</h1>
+        <p style="color:#6b7280;">Isi formulir dan pesan langsung via WhatsApp</p>
+      </div>
+      
+      <div style="display:grid; grid-template-columns:1fr; gap:32px;">
+        
+        <!-- FORM PESANAN -->
+        <form id="order-form" class="card" style="padding:24px;">
+          <h3 style="font-weight:700; font-size:18px; color:#111827; margin-bottom:24px; display:flex; align-items:center; gap:8px;">
+            <iconify-icon icon="solar:document-text-linear" style="color:#0077B6; font-size:20px;"></iconify-icon> Data Pemesan
+          </h3>
+          
+          <div class="form-group"><label class="form-label">Nama Lengkap <span class="required">*</span></label><input id="order-name" type="text" class="form-input" placeholder="Masukkan nama lengkap" required></div>
+          
+          <div class="form-group"><label class="form-label">Nomor Telepon <span class="required">*</span></label><input id="order-phone" type="tel" class="form-input" placeholder="08xxxxxxxxxx" required></div>
+          
+          <!-- DYNAMIC AREA: Mode Pesan Manual vs Checkout Keranjang -->
+          <div id="order-items-container">
+            <!-- Mode Manual (Default) -->
+            <div id="manual-order-section">
+              <div class="form-group">
+                <label class="form-label">Pilih Ikan <span class="required">*</span></label>
+                <select id="order-fish" class="form-select" required>
+                  <option value="">-- Pilih jenis ikan --</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Jumlah (Kg) <span class="required">*</span></label>
+                <input id="order-qty" type="number" min="0.5" step="0.5" class="form-input" placeholder="0.5" required>
+              </div>
+            </div>
+
+            <!-- Mode Checkout Keranjang (Muncul jika ada data checkout) -->
+            <div id="cart-checkout-section" style="display:none;">
+              <label class="form-label">Detail Pesanan dari Keranjang</label>
+              <div id="cart-items-summary" style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:16px; padding:16px; margin-bottom:20px;">
+                <!-- Akan dirender oleh JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- PILIHAN LAPAK (Hanya muncul di mode manual) -->
+          <div id="seller-selection-container" style="margin-bottom:20px;"></div>
+
+          <div class="form-group"><label class="form-label">Waktu Kirim</label><select id="order-time" class="form-select">
+              <option value="pagi">Pagi (08:00-12:00)</option>
+              <option value="siang">Siang (12:00-15:00)</option>
+              <option value="sore">Sore (15:00-18:00)</option>
+            </select></div>
+          
+          <div class="form-group"><label class="form-label">Alamat Pengiriman <span class="required">*</span></label><textarea id="order-address" class="form-textarea" placeholder="Masukkan alamat lengkap pengiriman" required></textarea></div>
+          
+          <div class="form-group"><label class="form-label">Catatan (Opsional)</label><input id="order-notes" type="text" class="form-input" placeholder="Contoh: Ikan dipotong wujatan"></div>
+          
+          <!-- TOMBOL SUBMIT (Mode Manual) -->
+          <button id="btn-manual-submit" type="submit" class="btn btn-accent" style="width:100%; margin-top:8px;">
+            <iconify-icon icon="mdi:whatsapp" style="font-size:22px;"></iconify-icon> Kirim Pesanan via WhatsApp
+          </button>
+
+          <!-- TOMBOL SUBMIT SPLIT (Mode Keranjang - Multi Lapak) -->
+          <div id="split-checkout-buttons" style="display:none; margin-top:8px;">
+            <div style="background:#fef5e7; border:1px solid #fdebd0; padding:12px 16px; border-radius:12px; display:flex; align-items:center; gap:8px; margin-bottom:16px;">
+              <iconify-icon icon="solar:info-circle-bold" style="color:#D68910; font-size:18px;"></iconify-icon>
+              <span style="font-size:13px; color:#92400e;">Pesanan Anda berasal dari beberapa lapak. Kirim pesanan ke masing-masing lapak:</span>
+            </div>
+            <div id="split-btn-container" style="display:flex; flex-direction:column; gap:12px;">
+              <!-- Akan diisi tombol WA per lapak oleh JS -->
+            </div>
+            <button type="button" onclick="finishSplitCheckout()" class="btn btn-primary" style="width:100%; margin-top:16px; display:none;" id="btn-finish-checkout">
+              <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;"></iconify-icon> Selesai & Kosongkan Keranjang
+            </button>
+          </div>
+
+        </form>
+
+        <!-- RINGKASAN PESANAN -->
+        <div>
+          <div class="card" style="padding:24px; position:sticky; top:100px;">
+            <h3 style="font-weight:700; font-size:18px; color:#111827; margin-bottom:24px; display:flex; align-items:center; gap:8px;">
+              <iconify-icon icon="solar:receipt-text-linear" style="color:#0077B6; font-size:20px;"></iconify-icon> Ringkasan
+            </h3>
+            <div id="order-summary" style="margin-bottom:24px;">
+              <div style="text-align:center; padding:32px 0; color:#9ca3af;"><iconify-icon icon="solar:cart-large-2-linear" style="font-size:32px;"></iconify-icon>
+                <p style="font-size:14px; margin-top:8px;">Isi formulir untuk melihat ringkasan</p>
+              </div>
+            </div>
+            <div style="border-top:1px solid #f1f5f9; padding-top:16px;">
+              <div style="display:flex; justify-content:space-between; font-size:14px; color:#6b7280; margin-bottom:8px;">
+                <span>Ongkos Kirim</span><span style="color:#2ECC71; font-weight:600;">GRATIS</span></div>
+              <div id="order-total" style="display:flex; justify-content:space-between; align-items:center;"><span style="font-weight:700; color:#111827;">Total</span><span style="font-weight:800; font-size:24px; color:#0077B6;">Rp 0</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding-top:0;">
+        <p class="footer-copy">&copy; Sistem Informasi Kelompok-2. Semua hak dilindungi.</p>
+        <div style="display:flex; gap:24px;"><a href="index.html" class="footer-link">Beranda</a><a href="produk.html" class="footer-link">Produk</a><a href="keranjang.html" class="footer-link">Keranjang</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pesan.Js"></script>
+  
+  
+</body>
+
+</html>

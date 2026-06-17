@@ -1,0 +1,51 @@
+/* KOMPONEN (Tombol, Kartu, Form, Toast, Grid) */
+.toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.12); border: 1px solid #e6f3fa; padding: 16px; display: flex; align-items: center; gap: 12px; min-width: 280px; transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+.toast.show { transform: translateX(0); }
+.toast-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; }
+.toast-icon.success { background: #d5f5e3; color: #27AE60; }
+.toast-icon.warning { background: #fef5e7; color: #D68910; }
+.toast-title { font-weight: 600; font-size: 14px; color: #1f2937; }
+.toast-msg { font-size: 12px; color: #6b7280; }
+.toast-close { margin-left: auto; background: none; border: none; color: #9ca3af; cursor: pointer; font-size: 18px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; cursor: pointer; font-family: inherit; font-weight: 700; transition: all 0.2s; }
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: #0077B6; color: white; padding: 12px 24px; border-radius: 14px; font-size: 14px; }
+.btn-primary:hover { background: #005F92; box-shadow: 0 4px 16px rgba(0,119,182,0.25); }
+.btn-accent { background: #F39C12; color: white; padding: 14px 28px; border-radius: 16px; font-size: 15px; }
+.btn-accent:hover { background: #D68910; box-shadow: 0 8px 24px rgba(243,156,18,0.3); }
+.btn-outline { background: white; color: #374151; padding: 14px 28px; border-radius: 16px; font-size: 15px; border: 2px solid #e5e7eb; }
+.btn-outline:hover { border-color: #99CFEB; }
+.btn-sm { padding: 8px 16px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+
+.card { background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 0.4s; }
+.card:hover { box-shadow: 0 16px 32px -8px rgba(0,119,182,0.1); transform: translateY(-4px); }
+.product-card .product-img { transition: transform 0.7s; }
+.product-card:hover .product-img { transform: scale(1.08); }
+
+.form-group { margin-bottom: 20px; }
+.form-label { display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px; }
+.form-label .required { color: #ef4444; }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 14px 16px; border: 2px solid #e5e7eb; border-radius: 16px; font-size: 14px; font-family: inherit; font-weight: 500; color: #1f2937; background: white; transition: all 0.2s; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: #0077B6; box-shadow: 0 0 0 3px rgba(0,119,182,0.12); }
+.form-textarea { resize: vertical; min-height: 80px; }
+
+.section-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+.section-title { font-size: 2rem; font-weight: 800; color: #111827; margin-bottom: 16px; letter-spacing: -0.02em; }
+@media (min-width: 768px) { .section-title { font-size: 2.25rem; } }
+
+.grid { display: grid; gap: 24px; }
+.grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+@media (min-width: 640px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+
+.cat-btn { padding: 12px 20px; border-radius: 16px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.2s; border: 2px solid #e5e7eb; background: white; color: #6b7280; }
+.cat-btn:hover { border-color: #99CFEB; }
+.cat-btn.active { background: #0077B6; color: white; border-color: #0077B6; }
+
+.qty-control { display: flex; align-items: center; gap: 8px; }
+.qty-btn { width: 32px; height: 32px; border-radius: 10px; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; transition: all 0.15s; }
+.qty-btn:active { transform: scale(0.9); }
+.qty-btn.minus { background: #f3f4f6; color: #6b7280; }
+.qty-btn.plus { background: #e6f3fa; color: #0077B6; }
+.qty-value { width: 32px; text-align: center; font-weight: 700; font-size: 14px; }
